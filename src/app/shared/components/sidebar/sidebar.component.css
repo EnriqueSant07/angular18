@@ -1,0 +1,54 @@
+/* Estilo base del sidebar */
+.sidebar {
+  width: 80px; /* Ancho más pequeño cuando está comprimido */
+  height: 100vh;
+  background-color: #343a40;
+  transition: all 0.3s ease;
+  color: white;
+}
+
+.sidebar.expanded {
+  width: 250px; /* Ancho cuando está expandido */
+}
+
+/* Estilo de los enlaces */
+.sidebar a {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  color: #ffffff;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar a:hover {
+  background-color: #495057;
+  color: #ffffff;
+}
+
+.sidebar-header {
+  background-color: #212529;
+}
+
+/* Estilo para los iconos */
+.bi {
+  font-size: 1.2rem;
+  margin: 0 auto; /* Centrar iconos cuando el sidebar está comprimido */
+}
+
+/* Estilo para el submenú */
+.list-unstyled {
+  list-style: none;
+}
+
+.ps-3 {
+  padding-left: 1rem;
+}
+
+/* Ajustes para el texto cuando el sidebar está comprimido */
+.sidebar:not(.expanded) a span {
+  display: none; /* Oculta el texto cuando el sidebar está comprimido */
+}
+
+.sidebar:not(.expanded) a i {
+  margin: 0 auto; /* Centra los iconos cuando el sidebar está comprimido */
+}

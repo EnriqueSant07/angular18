@@ -1,0 +1,68 @@
+<div class="d-flex">
+  <!-- Sidebar -->
+  <div [class.expanded]="isExpanded" class="sidebar shadow" style="height: 100vh !important;">
+    <div class="sidebar-header d-flex justify-content-between align-items-center p-3">
+      @if(isExpanded) {
+      <h4 class="m-0 text-white">Menú</h4>
+      }
+      <button class="btn btn-light btn-sm" (click)="toggleSidebar()">☰</button>
+    </div>
+    <ul class="list-unstyled p-3">
+      <!-- Opción 1: Signals -->
+      <li>
+        <a href="#" class="text-decoration-none text-white d-flex align-items-center">
+          <i class="bi bi-lightning-charge me-2"></i>
+          @if (isExpanded) {
+          <span>Signals</span>
+          }
+        </a>
+      </li>
+
+      <!-- Opción 2: Effects -->
+      <li>
+        <a href="#" class="text-decoration-none text-white d-flex align-items-center">
+          <i class="bi bi-magic me-2"></i>
+          @if (isExpanded) {
+          <span>Effects</span>
+          }
+        </a>
+      </li>
+
+      <!-- Opción 3: Observables -->
+      <li>
+        <a href="#" class="text-decoration-none text-white d-flex align-items-center" (click)="toggleDropdown()">
+          <i class="bi bi-broadcast me-2"></i>
+          @if (isExpanded) {
+          <span>Observables</span>
+          }
+          @if (isExpanded) {
+          <i [class]="isDropdownOpen ? 'bi bi-chevron-down ms-auto' : 'bi bi-chevron-right ms-auto'"></i>
+          }
+        </a>
+        <!-- Submenú -->
+        @if (isExpanded && isDropdownOpen) {
+        <ul class="list-unstyled ps-3">
+          <li>
+            <a href="#" class="text-decoration-none text-white d-flex align-items-center">
+              <i class="bi bi-sliders me-2"></i>
+              <span>Opción 1</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="text-decoration-none text-white d-flex align-items-center">
+              <i class="bi bi-tools me-2"></i>
+              <span>Opción 2</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="text-decoration-none text-white d-flex align-items-center">
+              <i class="bi bi-info-circle me-2"></i>
+              <span>Opción 3</span>
+            </a>
+          </li>
+        </ul>
+        }
+      </li>
+    </ul>
+  </div>
+</div>
