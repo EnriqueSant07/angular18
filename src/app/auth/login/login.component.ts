@@ -1,26 +1,32 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CardModule } from 'primeng/card';
+import { AuthService } from '../../shared/service/auth.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CardModule],
+  imports: [CardModule, FormsModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrl: './login.component.css',
 })
 export class LoginComponent {
-  email: string = '';
-  password: string = '';
+  credentials = { email: '', password: '' };
+
+  constructor(private auth: AuthService) {}
 
   onSubmit() {
-    if (this.email && this.password) {
-      console.log('Correo:', this.email);
-      console.log('Contraseña:', this.password);
+    this.auth.loginUser(this.credentials);
+  }
 
-      // Lógica para manejar la autenticación aquí
-      alert('Inicio de sesión exitoso');
-    } else {
-      alert('Por favor, complete todos los campos.');
-    }
+  presioname() {
+    this.auth.getUsers().subscribe({
+      next: (response: any) => {
+        console.log(response);
+      },
+      error: (error: any) => {
+        console.error(error);
+      },
+    });
   }
 }

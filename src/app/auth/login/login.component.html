@@ -1,5 +1,12 @@
-<p-card header="Simple Card">
-  <p class="m-0">
-      Lorem ipsum dolor sit amet...
-  </p>
-</p-card>
+<form (ngSubmit)="onSubmit()">
+  <div>
+    <label for="email">Email:</label>
+    <input type="email" id="email" [(ngModel)]="credentials.email" name="email" required>
+  </div>
+  <div>
+    <label for="password">Password:</label>
+    <input type="password" id="password" [(ngModel)]="credentials.password" name="password" required>
+  </div>
+  <button type="submit">Login</button>
+</form>
+<button (click)="presioname()">ver usuarios</button>
