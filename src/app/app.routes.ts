@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { authIntercpetorInterceptor } from './shared/others/interceptors/auth-intercpetor.interceptor';
+import { authGuardGuard } from './shared/others/guard/auth-guard.guard';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -7,7 +7,7 @@ export const routes: Routes = [
     path: 'login',
     loadComponent: () =>
       import('./auth/login/login.component').then((c) => c.LoginComponent),
-    canActivate: [authIntercpetorInterceptor],
+    canActivate: [authGuardGuard],
   },
   {
     path: 'Dashboard',
@@ -15,7 +15,7 @@ export const routes: Routes = [
       import('./dashboard/dashboard.component').then(
         (c) => c.DashboardComponent
       ),
-    canActivate: [authIntercpetorInterceptor],
+    canActivate: [authGuardGuard],
     children:[
     {
         path: 'users',
