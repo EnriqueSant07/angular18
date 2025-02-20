@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { UserLogin } from '../../dashboard/page/users/interface/user-login';
 import { HttpClient } from '@angular/common/http';
-import { firstValueFrom, Observable, tap } from 'rxjs';
+import { catchError, firstValueFrom, Observable, tap, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -29,14 +29,13 @@ export class AuthService {
     return localStorage.getItem('token');
   }
 
-  verifyToken(): boolean {
-    return this.getTokenAccess() != null;
+  removeToken() {
+    return localStorage.removeItem('token');
   }
 
   logoutUser() {
     localStorage.removeItem('token');
   }
-
 
   getUsers(): Observable<any[]>{
     return this.http.get<any[]>(`${this.baseUrl}users`);

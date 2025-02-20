@@ -5,7 +5,7 @@ import { catchError, throwError } from 'rxjs';
 
 export const authIntercpetorInterceptor: HttpInterceptorFn = (req, next) => {
   const token = inject(AuthService);
-  if (token) {
+  if (token && !req.url.includes('/login')) {
     req = req.clone({
       setHeaders: {
         Authorization: `Bearer ${token.getTokenAccess()}`,
@@ -15,8 +15,7 @@ export const authIntercpetorInterceptor: HttpInterceptorFn = (req, next) => {
   return next(req).pipe(
     catchError((err: HttpErrorResponse) => {
       if (err.status == 401) {
-        console.log('sin session rey')
-        token.logoutUser;
+        token.logoutUser();
       }
       return throwError(() => err);
     })
